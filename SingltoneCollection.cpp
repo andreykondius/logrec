@@ -19,11 +19,7 @@ Logrec &SingltoneCollection::getLogFile()
 {
     std::lock_guard<std::mutex> lock(mut);
     if (!logfile)
-#ifdef WIN32
         logfile = std::make_shared<Logrec>();
-#else
-        logfile = std::make_shared<Logrec>("/var/opt/TEST/");
-#endif
     return *logfile;
 }
 
