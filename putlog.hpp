@@ -25,7 +25,7 @@ void print(const T11& beg, const Tnn& ... val)
 }
 
 template<typename T1, typename ... Tn>
-void PutlogCPP(const std::string name, const std::string fo, LogLevel level, const T1& beg, const Tn&...val)
+void PutlogCPP(const std::string& name, const std::string& fo, LogLevel level, const T1& beg, const Tn&...val)
 {
 #ifndef NOLOG
     std::lock_guard<std::mutex> lock(mut);
