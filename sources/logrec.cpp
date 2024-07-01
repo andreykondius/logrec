@@ -32,7 +32,6 @@ Logrec::Logrec(const char *path)
 }
 Logrec::~Logrec()
 {
-    close();
 }
 std::string Logrec::getCurTime()
 {
@@ -99,9 +98,14 @@ void Logrec::open()
 }
 void Logrec::close()
 {
+    FileLog.close();
+}
+
+void Logrec::closeAll()
+{
     open();
     FileLog << getCurTime() << "[" << getName().c_str() << getVersion().c_str() << "]" << " LOG_INFO: Конец лога." << std::endl;
-    FileLog.close();
+    close();
 }
 
 

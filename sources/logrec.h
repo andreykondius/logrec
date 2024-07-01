@@ -1,3 +1,7 @@
+// Author: Kondius A.V.
+// kondius@mail.ru, andreykondius@gmail.com
+// 2024
+
 #pragma once
 
 #include <fstream>
@@ -18,6 +22,7 @@ public:
     void start();
     void open();
     void close();
+    void closeAll();
     std::string getCurTime();
     std::string getDataFromFormat(const std::string &val);
     std::string getCurTimeMs();

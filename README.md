@@ -28,7 +28,12 @@ Configure your CMakeLists.txt as like below:
 
 	add_subdirectory(logrec)
 
-	target_link_libraries(${you_app}
+	target_include_directories(<YOU_PROJECT>
+	    PRIVATE
+	    logrec/sources
+	)
+
+	target_link_libraries(${YOU_PROJECT}
 		PUBLIC
 		${LOGREC_LIB}
 	)
@@ -37,7 +42,7 @@ Configure your CMakeLists.txt as like below:
 
 Include into you cpp file as like below.
 
-	#include "logrec/putlog.hpp"
+	#include "putlog.hpp"
 
 ## Using
 
@@ -46,6 +51,8 @@ Use the Logger of Records into you code as like below:
 	Putlog(LOG_MESSAGE,"Some text 1 ", "Some text 2 ","Some text 3 ","Some text 4 ","Some text 5 ");
 	Putlog(LOG_MESSAGE,"Some text 1 ");
 	Putlog(LOG_ERROR,"Some text 1 ");
+
+
 
 ## License
 

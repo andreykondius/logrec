@@ -1,9 +1,14 @@
+// Author: Kondius A.V.
+// kondius@mail.ru, andreykondius@gmail.com
+// 2024
+
 #include <stdio.h>
 #include <time.h>
 //#define NOLOG
 
 enum LogLevel
 {
+
     I,
     LOG_INFO,
     LOG_MESSAGE,
@@ -14,7 +19,11 @@ enum LogLevel
 #ifdef __cplusplus
 #include "logrec.h"
 #include "SingltoneCollection.h"
-#define Putlog(LogLevel,...) PutlogCPP(__FILE__ , __FUNCTION__ , LogLevel , __VA_ARGS__ )
+
+#define STRINGIFY(x) #x
+#define TOSTRING(x) STRINGIFY(x)
+
+#define Putlog(LogLevel,...) PutlogCPP(__FILE__ , __FUNCTION__ , TOSTRING(__LINE__) , LogLevel , __VA_ARGS__ )
 
 inline void print(){}
 template<typename T11, typename ... Tnn>
@@ -25,7 +34,7 @@ void print(const T11& beg, const Tnn& ... val)
 }
 
 template<typename T1, typename ... Tn>
-void PutlogCPP(const std::string& name, const std::string& fo, LogLevel level, const T1& beg, const Tn&...val)
+void PutlogCPP(const std::string &name, const std::string &fo, const std::string &line, LogLevel level, const T1& beg, const Tn&...val)
 {
 #ifndef NOLOG
     std::lock_guard<std::mutex> lock(mut);
@@ -34,7 +43,7 @@ void PutlogCPP(const std::string& name, const std::string& fo, LogLevel level, c
     if(level != I)
     {
         SingltoneCollection::instance().getLogFile().getFileLog() << SingltoneCollection::instance().getLogFile().getDataFromFormat("%H:%M:%S ");
-        SingltoneCollection::instance().getLogFile().getFileLog() << "[" << SingltoneCollection::instance().truncateString(name) << ", "<<fo<<"] ";
+        SingltoneCollection::instance().getLogFile().getFileLog() << "[" << SingltoneCollection::instance().truncateString(name) << ", "<<fo<<":"<<line<<"] ";
     }
     if(level == LOG_INFO)
     {
@@ -85,7 +94,7 @@ static  struct tm getTimeInTm()
     time_t rawtime;
     struct tm * timeinfo;
     time (&rawtime);
-    timeinfo = localtime(&rawtime);
+    timeinfo = localtime_r(&rawtime);
     return *timeinfo;
 }
 
@@ -120,10 +129,10 @@ static char* truncateString(const char* str)
 static void PutlogC( char* file, char* func, int type, char* msg, ... )
 {
 #ifndef NOLOG
+    pthread_mutex_lock(&mutLogrec_c);
     struct tm timeInfo = getTimeInTm();
     char buffer[512];
     getNameLog(timeInfo, buffer);
-    pthread_mutex_lock(&mutLogrec_c);
     FILE* log = openLog(buffer);
     char* str;
     va_list vl;
