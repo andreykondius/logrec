@@ -12,14 +12,14 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-add_executable(UnitTests ${TestSources})
+add_executable(UnitTestsLogrec ${TestSources})
 
-target_include_directories(UnitTests
+target_include_directories(UnitTestsLogrec
     PRIVATE
     ../sources
 )
 
-target_link_libraries(UnitTests
+target_link_libraries(UnitTestsLogrec
     GTest::gtest_main
     ${LOGREC_LIB}
 )

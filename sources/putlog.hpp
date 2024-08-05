@@ -4,11 +4,10 @@
 
 #include <stdio.h>
 #include <time.h>
-//#define NOLOG
+// #define NOLOG
 
 enum LogLevel
 {
-
     I,
     LOG_INFO,
     LOG_MESSAGE,
@@ -176,3 +175,5 @@ static void PutlogC( char* file, char* func, int type, char* msg, ... )
 }
 
 #endif
+
+
