@@ -41,7 +41,7 @@ void PutlogCPP(const std::string &name, const std::string &fo, const std::string
     SingltoneCollection::instance().getLogFile().open();
     if(level != I)
     {
-        SingltoneCollection::instance().getLogFile().getFileLog() << SingltoneCollection::instance().getLogFile().getDataFromFormat("%H:%M:%S ");
+        SingltoneCollection::instance().getLogFile().getFileLog() << SingltoneCollection::instance().getLogFile().getDataFromFormat("%d-%m-%Y %H:%M:%S ");
         SingltoneCollection::instance().getLogFile().getFileLog() << "[" << SingltoneCollection::instance().truncateString(name) << ", "<<fo<<":"<<line<<"] ";
     }
     if(level == LOG_INFO)

@@ -35,7 +35,7 @@ Logrec::~Logrec()
 }
 std::string Logrec::getCurTime()
 {
-    return getDataFromFormat("%H:%M:%S ");
+    return getDataFromFormat("%d-%m-%Y %H:%M:%S ");
 }
 std::string Logrec::getDataFromFormat(const std::string &val)
 {
