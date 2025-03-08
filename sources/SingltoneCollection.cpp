@@ -11,7 +11,6 @@ SingltoneCollection::SingltoneCollection()
 
 SingltoneCollection::~SingltoneCollection()
 {
-    closeLogFile();
 }
 
 Logrec &SingltoneCollection::getLogFile()
