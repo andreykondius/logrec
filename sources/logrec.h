@@ -7,6 +7,8 @@
 #include <fstream>
 #include <string>
 
+namespace logrec {
+
 class Logrec
 {
     std::string fileName;
@@ -34,3 +36,4 @@ public:
     std::string getVersion();
 };
 
+}

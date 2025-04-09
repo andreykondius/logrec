@@ -18,6 +18,7 @@
 #ifndef PROJECT_PATCH_VERSION
 #define PROJECT_PATCH_VERSION 0
 #endif
+namespace logrec {
 
 Logrec::Logrec()
 {
@@ -108,4 +109,4 @@ void Logrec::closeAll()
     close();
 }
 
-
+}

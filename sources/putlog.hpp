@@ -1,10 +1,20 @@
 // Author: Kondius A.V.
 // kondius@mail.ru, andreykondius@gmail.com
 // 2024
+#pragma once
 
 #include <stdio.h>
 #include <time.h>
 // #define NOLOG
+
+#ifdef __cplusplus
+#include "logrec.h"
+#include "SingltoneCollection.h"
+
+#define STRINGIFY(x) #x
+#define TOSTRING(x) STRINGIFY(x)
+
+namespace logrec {
 
 enum LogLevel
 {
@@ -14,13 +24,6 @@ enum LogLevel
     LOG_WARN,
     LOG_ERROR
 } ;
-
-#ifdef __cplusplus
-#include "logrec.h"
-#include "SingltoneCollection.h"
-
-#define STRINGIFY(x) #x
-#define TOSTRING(x) STRINGIFY(x)
 
 #define Putlog(LogLevel,...) PutlogCPP(__FILE__ , __FUNCTION__ , TOSTRING(__LINE__) , LogLevel , __VA_ARGS__ )
 
@@ -176,4 +179,4 @@ static void PutlogC( char* file, char* func, int type, char* msg, ... )
 
 #endif
 
-
+}

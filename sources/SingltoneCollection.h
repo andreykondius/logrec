@@ -10,6 +10,8 @@
 #include <mutex>
 #include <memory>
 
+namespace logrec {
+
 class Logrec;
 
 class SingltoneCollection
@@ -32,3 +34,5 @@ public:
 };
 
 extern std::mutex mut;
+
+}

@@ -16,10 +16,10 @@ using namespace std::chrono_literals;
 
 TEST(ConfigParseTest, PutLog)
 {
-    Putlog(LOG_INFO, "parameters = 1", "parameters = 2", "parameters = 3");
-    Putlog(LOG_MESSAGE, "parameters = 1", "parameters = 2", "parameters = 3");
-    Putlog(LOG_WARN, "parameters = 1", "parameters = 2", "parameters = 3");
-    Putlog(LOG_ERROR, "parameters = 1", "parameters = 2", "parameters = 3");
+    logrec::Putlog(logrec::LOG_INFO, "parameters = 1", "parameters = 2", "parameters = 3");
+    logrec::Putlog(logrec::LOG_MESSAGE, "parameters = 1", "parameters = 2", "parameters = 3");
+    logrec::Putlog(logrec::LOG_WARN, "parameters = 1", "parameters = 2", "parameters = 3");
+    logrec::Putlog(logrec::LOG_ERROR, "parameters = 1", "parameters = 2", "parameters = 3");
     SUCCEED();
 }
 
@@ -27,23 +27,23 @@ TEST(ConfigParseTest, StressTest)
 {
     std::thread th1([](){
         for (auto i=0; i < 10000; ++i)
-            Putlog(LOG_INFO, "Thread 1. Parameter i = ", i);
+            logrec::Putlog(logrec::LOG_INFO, "Thread 1. Parameter i = ", i);
     });
     std::thread th2([](){
         for (auto i=0; i < 10000; ++i)
-            Putlog(LOG_INFO, "Thread 2. Parameter i = ", i);
+            logrec::Putlog(logrec::LOG_INFO, "Thread 2. Parameter i = ", i);
     });
     std::thread th3([](){
         for (auto i=0; i < 10000; ++i)
-            Putlog(LOG_INFO, "Thread 3. Parameter i = ", i);
+            logrec::Putlog(logrec::LOG_INFO, "Thread 3. Parameter i = ", i);
     });
     std::thread th4([](){
         for (auto i=0; i < 10000; ++i)
-            Putlog(LOG_INFO, "Thread 4. Parameter i = ", i);
+            logrec::Putlog(logrec::LOG_INFO, "Thread 4. Parameter i = ", i);
     });
     std::thread th5([](){
         for (auto i=0; i < 10000; ++i)
-            Putlog(LOG_INFO, "Thread 5. Parameter i = ", i);
+            logrec::Putlog(logrec::LOG_INFO, "Thread 5. Parameter i = ", i);
     });
 
     th1.detach();

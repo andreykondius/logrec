@@ -2,6 +2,8 @@
 #include <string>
 #define WIN32
 
+namespace logrec {
+
 SingltoneCollection SingltoneCollection::inst;
 std::mutex mut;
 
@@ -40,4 +42,6 @@ std::string SingltoneCollection::truncateString(const std::string &str)
 {
     auto numLastSlash = str.rfind('\\');
     return str.substr(numLastSlash + 1);
+}
+
 }
